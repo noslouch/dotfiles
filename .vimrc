@@ -103,7 +103,30 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " scratch buffer
-nnoremap <leader><tab> :Scratch<CR>
+" nnoremap <leader><tab> :Scratch<CR>
+
+" conque settings
+let g:ConqueTerm_FastMode=1
+
+" new conque buffer
+nnoremap <leader>cv :ConqueTermVSplit node<cr>
+nnoremap <leader>cx :ConqueTermSplit node<cr>
+
+" syntastic settings
+let g:syntastic_check_on_open=1
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+let g:syntastic_mode_map = { 'mode' : 'active',
+            \'active_filetypes': [], 
+            \'passive_filetypes' : ['html'] }
+
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_scss_checkers = ['sass']
+let g:syntastic_php_checkers = ['php']
+let g:syntastic_auto_loc_list=1
+let g:syntastic_stl_format='[%E{Errors: %e | Line #%fe}%B{, }%W{Warnings: %w | Line #%fw}]'
+
+set statusline=%#warningmsg#%{SyntasticStatuslineFlag()}%*\ %F\ -\ Filetype:\ %y
 
 set autochdir "Set the current working dir to the open file
 set nobackup
@@ -148,6 +171,12 @@ nnoremap Y y$
 nnoremap <leader>al :left<CR>
 nnoremap <leader>ar :right<CR>
 nnoremap <leader>ac :center<CR>
+
+" Helpful use of space bar
+nnoremap <space> :
+
+" Quicksave
+nnoremap <space><space> :w<cr>
 
 " Git conflict markers
 " Conflict markers {{{
