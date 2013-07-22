@@ -34,7 +34,7 @@ set nomodeline                  " close security exploit
 set visualbell
 set cursorline
 set ttyfast
-set ruler		                " show the cursor position all the time
+set ruler                       " show the cursor position all the time
 set backspace=indent,eol,start  " allow backspacing over everything in insert mode
 set laststatus=2
 set cmdheight=2
@@ -126,7 +126,12 @@ let g:syntastic_php_checkers = ['php']
 let g:syntastic_auto_loc_list=1
 let g:syntastic_stl_format='[%E{Errors: %e | Line #%fe}%B{, }%W{Warnings: %w | Line #%fw}]'
 
-set statusline=%#warningmsg#%{SyntasticStatuslineFlag()}%*\ %F\ -\ Filetype:\ %y
+set statusline=%#warningmsg#%{SyntasticStatuslineFlag()}%*  " syntastic status
+set statusline+=bu:\ %-3.3n\                                " buffer number
+set statusline+=\ %F\ :\                                    " full path
+set statusline+=%y                                          " filetype
+set statusline+=%=                                          " right align
+set statusline+=%10((%l,%c)%)\                              " line number, column number
 
 set autochdir "Set the current working dir to the open file
 set nobackup
