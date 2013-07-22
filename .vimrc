@@ -130,6 +130,7 @@ set statusline=%#warningmsg#%{SyntasticStatuslineFlag()}%*  " syntastic status
 set statusline+=bu:\ %-3.3n\                                " buffer number
 set statusline+=\ %F\ :\                                    " full path
 set statusline+=%y                                          " filetype
+set statusline+=%m\ 
 set statusline+=%=                                          " right align
 set statusline+=%10((%l,%c)%)\                              " line number, column number
 
