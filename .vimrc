@@ -13,6 +13,7 @@ filetype plugin indent on
 syntax on
 
 au BufRead,BufNewFile *.scss set filetype=scss
+au BufRead,BufNewFile *.snip set syntax=ee
 
 let mapleader = ","
 let maplocalleader = "\\"
@@ -102,15 +103,14 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" C-a is used by tmux
+":verbose map <C-a>
+":nunmap <C-a>
+":nnoremap <A-a> <C-a>
+":nnoremap <A-x> <C-x>
+
 " scratch buffer
 " nnoremap <leader><tab> :Scratch<CR>
-
-" conque settings
-let g:ConqueTerm_FastMode=1
-
-" new conque buffer
-nnoremap <leader>cv :ConqueTermVSplit node<cr>
-nnoremap <leader>cx :ConqueTermSplit node<cr>
 
 " syntastic settings
 let g:syntastic_check_on_open=1
