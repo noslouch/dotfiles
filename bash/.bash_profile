@@ -4,9 +4,9 @@ export TERM=xterm-256color
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
-alias ls="ls -1"
-alias ll="ls -aFl"
-alias la="ls -aF"
+alias ls="ls -1 --color=always"
+alias ll="ls -aFl --color=always"
+alias la="ls -aF --color=always"
 alias timestamp='date "+%Y.%m.%d.%H.%M"'
 alias lsip='curl -s http://checkip.dyndns.org | sed "s/[a-zA-Z/<> :]//g"'
 
