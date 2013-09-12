@@ -87,3 +87,8 @@ export PS1="$NEXT_PS$GREEN \n▶ $RESET"
 alias gg='git status -s'
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
+
