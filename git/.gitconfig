@@ -1,0 +1,67 @@
+[user]
+    email=me@brianwhitton.com
+    name="Brian Whitton"
+
+[push]
+    default=simple
+
+[core]
+    editor = vim
+    excludesfile = ~/.gitignore
+    autocrlf = input
+    safecrlf = true
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = true
+    pager = true
+
+[color "branch"]
+    current = red
+    local = yellow
+    remote = blue
+
+[color "diff"]
+    meta = magenta bold
+    frag = magenta bold
+    plain = green bold
+    old = red bold
+    new = yellow bold
+
+[color "status"]
+    header = magenta
+    added = green bold
+    updated = green bold
+    changed = yellow bold
+    untracked = red bold
+
+[color "decorate"]
+    remoteBranch = blue
+    branch = yellow
+
+[branch]
+    autosetuprebase = always
+
+[push]
+    default = tracking
+
+[alias]
+    aliases = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ => \\2/' | sort
+    ci=commit
+    st=status
+    pu=pull
+    ps=push
+    co=checkout
+    hist = log --pretty=format:\"%C(yellow)%h %Cgreen%ad %C(yellow)%ae%Creset %s%C(red)%d%Creset\" --graph --date=relative
+    lg = log --decorate --oneline
+    update = !git fetch origin && git rebase origin/master
+    squash = !git rebase -i origin/master
+    sprev = !git push origin HEAD:refs/for/master
+    cleanup = !git remote prune origin && git gc && git clean -dfx && git stash clear
+    rmbranch = !sh -c 'git branch -D $1 && git push origin :$1' -
+    who = shortlog -n -s --no-merges
+    setup = !git init && git add . && git commit -m \"initial commit\"
+    ignore=!([ ! -e .gitignore ] && touch .gitignore) | echo $1 >>.gitignore

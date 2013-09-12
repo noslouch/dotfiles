@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Library/WebServer/Documents/shanghai/templates/default_site/cn.group'
+let g:netrw_dirhist_2='/Library/WebServer/Documents/shanghai/templates/default_site'
+let g:netrw_dirhist_3='/Library/WebServer/Documents/shanghai/templates/default_site/cn.group'
