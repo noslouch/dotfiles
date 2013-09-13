@@ -42,12 +42,6 @@
     remoteBranch = blue
     branch = yellow
 
-[branch]
-    autosetuprebase = always
-
-[push]
-    default = tracking
-
 [alias]
     aliases = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ => \\2/' | sort
     ci=commit
@@ -65,3 +59,4 @@
     who = shortlog -n -s --no-merges
     setup = !git init && git add . && git commit -m \"initial commit\"
     ignore=!([ ! -e .gitignore ] && touch .gitignore) | echo $1 >>.gitignore
+    stagedeploy = !git co master && git merge staging && git push
