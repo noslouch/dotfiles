@@ -13,6 +13,9 @@ alias timestamp='date "+%m/%d/%Y  %H:%M"'
 alias lsip='curl -s http://checkip.dyndns.org | sed "s/[a-zA-Z/<> :]//g"'
 alias vi='vim'
 alias gg='git status -s'
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
 
 export PATH="/usr/local/share/npm/bin:/usr/local/mysql/bin:/usr/local/sbin:$PATH"
 
