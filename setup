@@ -1,0 +1,13 @@
+#!/bin/sh
+
+cd ~
+ln -s .dotfiles/.vim .
+ln -s .dotfiles/.vim/.vimrc .
+mv .bashrc .bashrc_old
+mv .profile .bash_profile_old
+ln -s .dotfiles/bash/.bash_profile .
+ln -s .dotfiles/bash/.bashrc .
+ln -s .dotfiles/bash/.git-completion.bash .
+ln -s .dotfiles/bash/.git-prompt.sh .
+ln -s .dotfiles/git/.gitconfig .
+ln -s .dotfiles/tmux/.tmux.conf .
