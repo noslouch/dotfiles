@@ -60,3 +60,4 @@
     setup = !git init && git add . && git commit -m \"initial commit\"
     ignore=!([ ! -e .gitignore ] && touch .gitignore) | echo $1 >>.gitignore
     stageup = !git push staging staging:master
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
