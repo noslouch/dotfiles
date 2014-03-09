@@ -16,6 +16,7 @@ alias gg='git status -s'
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
+alias sqlite3="/usr/local/Cellar/sqlite/3.8.3/bin/sqlite3"
 
 export PATH="/usr/local/share/npm/bin:/usr/local/mysql/bin:/usr/local/sbin:$PATH"
 
@@ -58,6 +59,7 @@ export PS1="$NEXT_PS$GREEN \n▶ $RESET"
 
 source ~/.git-completion.bash
 source ~/.git-prompt.sh
+source ~/.profile
 
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
