@@ -113,23 +113,22 @@ nnoremap <C-l> <C-w>l
 " nnoremap <leader><tab> :Scratch<CR>
 
 " MiniBufferExplorer settings
-" map <leader>mbt :MBEToggle<CR>
-" map <leader>bd :MBEbd<CR>
-" map <C--> 
+map <leader>mbt :MBEToggle<CR>
+map <leader>bd :MBEbd<CR>
 
 " NERDTree settings
 autocmd vimenter * if !argc() | NERDTree | endif
-map <leader>f :NERDTreeToggle<CR>
+map <leader>a :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Tagbar Settings
 let g:tagbar_usearrows = 1
-nnoremap <leader>a :TagbarToggle<CR>
+nnoremap <leader>f :TagbarToggle<CR>
 
 " Color Picker settings
 let g:colorpicker_app = 'iTerm.app'
-inoremap <C-X>c <ESC>:ColorHEX<CR>a
-nnoremap <C-X>c :ColorHEX<CR>a
+inoremap <C-l> <ESC>:ColorHEX<CR>a
+nnoremap <C-l> :ColorHEX<CR>a
 
 " Command T Settings
 let g:CommandTMatchWindowReverse = 1
