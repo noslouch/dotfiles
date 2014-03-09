@@ -112,6 +112,20 @@ nnoremap <C-l> <C-w>l
 " scratch buffer
 " nnoremap <leader><tab> :Scratch<CR>
 
+" MiniBufferExplorer settings
+" map <leader>mbt :MBEToggle<CR>
+" map <leader>bd :MBEbd<CR>
+" map <C--> 
+
+" NERDTree settings
+autocmd vimenter * if !argc() | NERDTree | endif
+map <leader>f :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" Tagbar Settings
+let g:tagbar_usearrows = 1
+nnoremap <leader>a :TagbarToggle<CR>
+
 " Color Picker settings
 let g:colorpicker_app = 'iTerm.app'
 inoremap <C-X>c <ESC>:ColorHEX<CR>a
@@ -121,9 +135,9 @@ nnoremap <C-X>c :ColorHEX<CR>a
 let g:CommandTMatchWindowReverse = 1
 let g:CommandTCancelMap='<C-x>'
 
-noremap <leader>o <Esc>:CommandT<CR>
+noremap <C-t> <Esc>:CommandT<CR>
 noremap <leader>O <Esc>:CommandTFlush<CR>
-noremap <leader>m <Esc>:CommandTBuffer<CR>
+noremap <C-t>b <Esc>:CommandTBuffer<CR>
 
 " YouCompleteMe settings
 
@@ -224,7 +238,7 @@ if has("autocmd")
         autocmd filetype vim setlocal list
         autocmd filetype python,rst setlocal list
         autocmd filetype ruby setlocal list
-        autocmd filetype javascript,css setlocal list
+        autocmd filetype javascript,css,scss setlocal list
     augroup end "}}}
 
     augroup vim_files "{{{
@@ -307,7 +321,7 @@ if has("autocmd")
         autocmd filetype python nnoremap <buffer> <leader>bp :normal Oimport pdb; pdb.set_trace()<Esc>
 
         " Toggling True/False
-        autocmd filetype python nnoremap <silent> <C-t> mmviw:s/True\\|False/\={'True':'False','False':'True'}[submatch(0)]/<CR>`m:nohlsearch<CR>
+        " autocmd filetype python nnoremap <silent> <C-t> mmviw:s/True\\|False/\={'True':'False','False':'True'}[submatch(0)]/<CR>`m:nohlsearch<CR>
 
         " Run a quick static syntax check every time we save a Python file
         autocmd BufWritePost *.py call Flake8()
@@ -354,7 +368,7 @@ if has("autocmd")
         autocmd filetype javascript setlocal foldmethod=marker foldmarker={,}
 
         " Toggling True/False
-        autocmd filetype javascript nnoremap <silent> <C-t> mmviw:s/true\\|false/\={'true':'false','false':'true'}[submatch(0)]/<CR>`m:nohlsearch<CR>
+        " autocmd filetype javascript nnoremap <silent> <C-t> mmviw:s/true\\|false/\={'true':'false','false':'true'}[submatch(0)]/<CR>`m:nohlsearch<CR>
     augroup end "}}}
 
     augroup textile_files "{{{
