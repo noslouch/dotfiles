@@ -9,8 +9,17 @@ filetype off
 execute pathogen#infect()
 execute pathogen#helptags()
 execute pathogen#incubate()
+"
+" Vundle Settings
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Plugin 'gmarik/vundle'
+Plugin 'https://github.com/gorodinskiy/vim-coloresque.git'
+
 filetype plugin indent on
 syntax on
+
 
 au BufRead,BufNewFile *.scss set filetype=scss
 au BufRead,BufNewFile *.snip set syntax=ee
@@ -44,7 +53,7 @@ set undofile
 set wrap                        " wrap lines
 set showmatch                   " show matching closing tags
 set virtualedit=all             " allow the cursor to go in to 'invalid' places
-set showcmd		                " display incomplete commands
+set showcmd                     " display incomplete commands
 set pastetoggle=<F2>            " when in insert mode, press <F2> to go to paste mode, wher eyou can pasete mass data that won't be autoindented
 set mouse=a                     " enable using the mouse if terminal emulator supports it
 set fileformats="unix,dos,mac"  
@@ -72,14 +81,22 @@ set gdefault                    " search/replace globally on a line by default
 set incsearch                   " show search matches as you type
 set hlsearch                    " highlight search results
 nnoremap <leader><space> :noh<cr>
-nnoremap <tab> %
-vnoremap <tab> %
+
+" Matchit
+nmap <Tab> %
+vmap <Tab> %
 
 " line numbers
 autocmd FocusLost * :set number
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
 autocmd CursorMoved * :set relativenumber
+
+" line overrun
+
+set colorcolumn=80
+set colorcolumn=+1,+2,+3
+highlight ColorColumn ctermfg=88
 
 " hidden characters
 set listchars=tab:▸\ ,eol:¬
@@ -112,9 +129,21 @@ nnoremap <C-l> <C-w>l
 " scratch buffer
 " nnoremap <leader><tab> :Scratch<CR>
 
+" DelimitMate Options
+let g:delimitMate_expand_cr = 2
+let g:delimitMate_expand_space = 1
+let g:delimitMate_jump_expansion = 1
+
+
+" RubyTest Settings
+let g:rubytest_spec_drb=1
+
 " MiniBufferExplorer settings
 map <leader>mbt :MBEToggle<CR>
 map <leader>bd :MBEbd<CR>
+noremap <leader>h <ESC>:bn<CR>
+noremap <leader>g <ESC>:bp<CR>
+
 
 " NERDTree settings
 autocmd vimenter * if !argc() | NERDTree | endif
@@ -127,8 +156,8 @@ nnoremap <leader>f :TagbarToggle<CR>
 
 " Color Picker settings
 let g:colorpicker_app = 'iTerm.app'
-inoremap <C-l> <ESC>:ColorHEX<CR>a
-nnoremap <C-l> :ColorHEX<CR>a
+inoremap <leader>c <ESC>:ColorHEX<CR>a
+nnoremap <leader>c :ColorHEX<CR>a
 
 " Command T Settings
 let g:CommandTMatchWindowReverse = 1
@@ -144,7 +173,9 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 
 " Colorizer Settings
-let g:colorizer_fgcontrast = -1
+" let g:colorizer_fgcontrast = -1
+" let g:auto_color=1
+" let g:colorizer_auto_filetype='scss,css,html,erb'
 
 " syntastic settings
 let g:syntastic_check_on_open=1
@@ -168,7 +199,7 @@ set statusline+=%m\
 set statusline+=%=                                          " right align
 set statusline+=%10((%l,%c)%)\                              " line number, column number
 
-set autochdir "Set the current working dir to the open file
+" set autochdir "Set the current working dir to the open file
 set nobackup
 
 set history=50      " keep 50 lines of command line history
@@ -224,7 +255,7 @@ nnoremap <space><space> :w<cr>
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " shortcut to jump to next conflict marker
-nnoremap <silent> <leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
+" nnoremap <silent> <leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
 " }}}
 
 " Filetype specific handling {{{
@@ -274,6 +305,8 @@ if has("autocmd")
         let g:closetag_default_xml=1
         autocmd filetype html,htmldjango let b:closetag_html_style=1
         autocmd filetype html,xhtml,xml source ~/.vim/bundle/closetag/closetag.vim
+        autocmd filetype html,xhtml,xml imap </ <C-_>
+
     augroup end " }}}
 
     augroup python_files "{{{
@@ -323,7 +356,7 @@ if has("autocmd")
         " autocmd filetype python nnoremap <silent> <C-t> mmviw:s/True\\|False/\={'True':'False','False':'True'}[submatch(0)]/<CR>`m:nohlsearch<CR>
 
         " Run a quick static syntax check every time we save a Python file
-        autocmd BufWritePost *.py call Flake8()
+        " autocmd BufWritePost *.py call Flake8()
     augroup end " }}}
 
     augroup supervisord_files "{{{
@@ -342,6 +375,15 @@ if has("autocmd")
         au!
 
         autocmd filetype ruby setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+        autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
+        autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+        autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+        "
+        " Auto-closing of HTML/XML tags
+        let g:closetag_default_xml=1
+        autocmd filetype ruby,eruby let b:closetag_html_style=1
+        autocmd filetype ruby,eruby source ~/.vim/bundle/closetag/closetag.vim
+        autocmd filetype ruby,eruby imap </ <C-_>
     augroup end " }}}
 
     augroup rst_files "{{{
