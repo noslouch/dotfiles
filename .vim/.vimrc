@@ -2,7 +2,7 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-colorscheme wombat256
+colorscheme lucius
 set t_Co=256
 
 filetype off
@@ -19,7 +19,6 @@ Plugin 'https://github.com/gorodinskiy/vim-coloresque.git'
 
 filetype plugin indent on
 syntax on
-
 
 au BufRead,BufNewFile *.scss set filetype=scss
 au BufRead,BufNewFile *.snip set syntax=ee
@@ -134,7 +133,6 @@ let g:delimitMate_expand_cr = 2
 let g:delimitMate_expand_space = 1
 let g:delimitMate_jump_expansion = 1
 
-
 " RubyTest Settings
 let g:rubytest_spec_drb=1
 
@@ -143,7 +141,6 @@ map <leader>mbt :MBEToggle<CR>
 map <leader>bd :MBEbd<CR>
 noremap <leader>h <ESC>:bn<CR>
 noremap <leader>g <ESC>:bp<CR>
-
 
 " NERDTree settings
 autocmd vimenter * if !argc() | NERDTree | endif
@@ -162,13 +159,11 @@ nnoremap <leader>c :ColorHEX<CR>a
 " Command T Settings
 let g:CommandTMatchWindowReverse = 1
 let g:CommandTCancelMap='<C-x>'
-
 noremap <C-t> <Esc>:CommandT<CR>
 noremap <leader>O <Esc>:CommandTFlush<CR>
 noremap <C-t>b <Esc>:CommandTBuffer<CR>
 
 " YouCompleteMe settings
-
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 
@@ -182,7 +177,7 @@ let g:syntastic_check_on_open=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_mode_map = { 'mode' : 'active',
-            \'active_filetypes': [], 
+            \'active_filetypes': [],
             \'passive_filetypes' : ['html'] }
 
 let g:syntastic_javascript_checkers = ['jshint']
