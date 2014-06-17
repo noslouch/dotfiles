@@ -53,7 +53,7 @@ set wrap                        " wrap lines
 set showmatch                   " show matching closing tags
 set virtualedit=all             " allow the cursor to go in to 'invalid' places
 set showcmd                     " display incomplete commands
-set pastetoggle=<F2>            " when in insert mode, press <F2> to go to paste mode, wher eyou can pasete mass data that won't be autoindented
+" set pastetoggle=<F2>            " when in insert mode, press <F2> to go to paste mode, wher eyou can pasete mass data that won't be autoindented
 set mouse=a                     " enable using the mouse if terminal emulator supports it
 set fileformats="unix,dos,mac"  
 set formatoptions+=1            " when wrapping paragraphs, don't end lines with 1-letter words (looks stupid)
@@ -105,9 +105,6 @@ au FocusLost * :wa
 
 " fold tags
 nnoremap <leader>ft Vatzf
-
-" select just pasted text for easy manipulation
-nnoremap <leader>v V`]
 
 " quicker escaping
 inoremap jj <ESC>
@@ -232,6 +229,12 @@ endfunction
 
 " Quick yanking to end of line
 nnoremap Y y$
+
+" Preserve indentation while pasting text from the OS X clipboard
+noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
+
+" select just pasted text for easy manipulation
+nnoremap <leader>v V`]
 
 " Quick alignment of text
 nnoremap <leader>al :left<CR>
