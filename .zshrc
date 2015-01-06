@@ -58,7 +58,8 @@ ZSH_THEME="agnoster"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(dircycle dirhistory lol osx git colorize iwhois npm bower vi-mode zsh-syntax-highlighting history-substring-search)
+plugins=(dircycle dirhistory lol osx git gitfast colorize iwhois npm bower vi-mode zsh-syntax-highlighting history-substring-search)
+fpath=(~/.zsh $fpath)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -74,8 +75,19 @@ bindkey "$terminfo[cud1]" history-substring-search-down
 
 # User configuration
 
-export PATH="/Users/noSlouch/.rvm/gems/ruby-2.1.1@railstutorial_rails_4_0/bin:/Users/noSlouch/.rvm/gems/ruby-2.1.1@global/bin:/Users/noSlouch/.rvm/rubies/ruby-2.1.1/bin:/usr/local/share/npm/bin:/usr/local/mysql/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/noSlouch/.rvm/bin"
+export PATH=/Users/noSlouch/.rvm/gems/ruby-2.1.1/bin:/Users/noSlouch/.rvm/rubies/ruby-2.1.1/bin:/Users/noSlouch/.rvm/gems/ruby-2.1.1@railstutorial_rails_4_0/bin:/Users/noSlouch/.rvm/gems/ruby-2.1.1@global/bin:/usr/local/share/npm/bin:/usr/local/mysql/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/noSlouch/.rvm/bin
 # export MANPATH="/usr/local/man:$MANPATH"
+
+export PATH="$(brew --prefix homebrew/php/php55)/bin:$PATH"
+# autojump
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+
+source ~/.aws
+
+# git completion
+# __git_files () { 
+#     _wanted files expl 'local files' _files 
+# }
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -93,3 +105,5 @@ export PATH="/Users/noSlouch/.rvm/gems/ruby-2.1.1@railstutorial_rails_4_0/bin:/U
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
+
+# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
