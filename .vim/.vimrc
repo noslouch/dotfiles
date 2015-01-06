@@ -149,13 +149,14 @@ let g:tagbar_usearrows = 1
 nnoremap <leader>f :TagbarToggle<CR>
 
 " Color Picker settings
-let g:colorpicker_app = 'iTerm.app'
-inoremap <leader>c <ESC>:ColorHEX<CR>a
-nnoremap <leader>c :ColorHEX<CR>a
+" let g:colorpicker_app = 'iTerm.app'
+" inoremap <leader>c <ESC>:ColorHEX<CR>a
+" nnoremap <leader>c :ColorHEX<CR>a
 
 " Command T Settings
 let g:CommandTMatchWindowReverse = 1
 let g:CommandTCancelMap='<C-x>'
+let g:CommandTFileScanner='find'
 noremap <C-t> <Esc>:CommandT<CR>
 noremap <leader>O <Esc>:CommandTFlush<CR>
 noremap <C-t>b <Esc>:CommandTBuffer<CR>
@@ -232,6 +233,7 @@ nnoremap Y y$
 
 " Preserve indentation while pasting text from the OS X clipboard
 noremap <leader>p :set paste<CR>:put  *<CR>:set nopaste<CR>
+set clipboard=unnamed
 
 " select just pasted text for easy manipulation
 nnoremap <leader>v V`]
@@ -255,6 +257,8 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " shortcut to jump to next conflict marker
 " nnoremap <silent> <leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
 " }}}
+
+au BufRead,BufNewFile *.handlebars,*.hbs set ft=html syntax=handlebars
 
 " Filetype specific handling {{{
 " only do this part when compiled with support for autocommands
@@ -294,7 +298,7 @@ if has("autocmd")
                 let n = n + 1
             endwhile
             " go with html
-            set ft=html
+            set ft=ee
         endfun
 
         autocmd BufNewFile,BufRead *.html,*.htm,*.j2 call s:DetectHTMLVariant()
@@ -419,6 +423,7 @@ if has("autocmd")
         autocmd filetype textile syntax region frontmatter start=/\%^---$/ end=/^---$/
         autocmd filetype textile highlight link frontmatter Comment
     augroup end "}}}
+
 endif
 " }}}
 
