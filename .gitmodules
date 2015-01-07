@@ -1,0 +1,3 @@
+[submodule ".vim/bundle/vim-bundle-mako"]
+	path = .vim/bundle/vim-bundle-mako
+	url = https://github.com/sophacles/vim-bundle-mako
