@@ -58,7 +58,7 @@ ZSH_THEME="agnoster"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(dircycle dirhistory lol osx git gitfast colorize iwhois npm bower vi-mode zsh-syntax-highlighting history-substring-search)
+plugins=(dircycle dirhistory lol git gitfast colorize iwhois npm bower vi-mode zsh-syntax-highlighting history-substring-search)
 fpath=(~/.zsh $fpath)
 
 source $ZSH/oh-my-zsh.sh
@@ -75,14 +75,8 @@ bindkey "$terminfo[cud1]" history-substring-search-down
 
 # User configuration
 
-export PATH=/Users/noSlouch/.rvm/gems/ruby-2.1.1/bin:/Users/noSlouch/.rvm/rubies/ruby-2.1.1/bin:/Users/noSlouch/.rvm/gems/ruby-2.1.1@railstutorial_rails_4_0/bin:/Users/noSlouch/.rvm/gems/ruby-2.1.1@global/bin:/usr/local/share/npm/bin:/usr/local/mysql/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/noSlouch/.rvm/bin
+export PATH="$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
 # export MANPATH="/usr/local/man:$MANPATH"
-
-export PATH="$(brew --prefix homebrew/php/php55)/bin:$PATH"
-# autojump
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
-
-source ~/.aws
 
 # git completion
 # __git_files () { 
@@ -105,5 +99,11 @@ source ~/.aws
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
+# For devs
+export WORKON_HOME=/usr/local/virtualenvs
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+fi
+#export WAAAPICKUP=#export WAAADROPOFF=
 
 # export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
