@@ -3,7 +3,7 @@
     name="Brian Whitton"
 
 [push]
-    default=simple
+    default=matching
 
 [core]
     editor = vim
