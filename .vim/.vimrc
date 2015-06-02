@@ -16,6 +16,7 @@ call vundle#rc()
 
 Plugin 'gmarik/vundle'
 Plugin 'https://github.com/gorodinskiy/vim-coloresque.git'
+Plugin 'Valloric/YouCompleteMe'
 
 filetype plugin indent on
 syntax on
@@ -49,6 +50,8 @@ set laststatus=2
 set cmdheight=2
 set relativenumber              " show line numbers relative to cursor position
 set undofile
+" Disable temp and backup files for ember
+set wildignore+=.*.swp,*~,._*
 set wrap                        " wrap lines
 set showmatch                   " show matching closing tags
 set virtualedit=all             " allow the cursor to go in to 'invalid' places
@@ -293,6 +296,9 @@ if has("autocmd")
                 " check for django
                 if getline(n) =~ '{%\s*\(extends\|load\|block\|if\|for\|include\|trans\)\>'
                     set ft=htmldjango.html
+                    return
+                elseif getline(n) =~ '<%'
+                    set ft=mako
                     return
                 endif
                 let n = n + 1
