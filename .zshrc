@@ -20,6 +20,34 @@ alias media='ssh wnyc@prod-media.wnyc.net'
 alias internal='ssh wnyc@prod-www-internal-app1.wnyc.net'
 
 
+run() { 
+  local SETTINGS
+  local PORT
+  while [[ $# > 1 ]]
+  do
+  key="$1"
+
+  case $key in
+      -s|--settings)
+      SETTINGS="$2"
+      shift # past argument
+      ;;
+      -p|--port)
+      PORT="$2"
+      shift # past argument
+      ;;
+  esac
+  shift # past argument or value
+  done
+  if [[ -z $SETTINGS ]]; then
+    SETTINGS=wnyc
+  fi
+  if [[ -z $PORT ]]; then
+    PORT=4567
+  fi
+  ./manage.py runserver 0.0.0.0:${PORT} --settings=puppy.settings.${SETTINGS}_settings
+}
+
 autoload -U zmv
 alias mmv='noglob zmv -W'
 
