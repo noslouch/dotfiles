@@ -16,7 +16,6 @@ call vundle#rc()
 
 Plugin 'gmarik/vundle'
 Plugin 'https://github.com/gorodinskiy/vim-coloresque.git'
-Plugin 'Valloric/YouCompleteMe'
 
 filetype plugin indent on
 syntax on
@@ -52,7 +51,7 @@ set relativenumber              " show line numbers relative to cursor position
 set undofile
 " Disable temp and backup files for ember
 set wildignore+=.*.swp,*~,._*
-set wrap                        " wrap lines
+set nowrap                        " wrap lines
 set showmatch                   " show matching closing tags
 set virtualedit=all             " allow the cursor to go in to 'invalid' places
 set showcmd                     " display incomplete commands
@@ -67,10 +66,10 @@ set nolist                      " don't show invisible characters by default, bu
 nnoremap <leader>i :set list!<cr>
 
 " tab settings
-set tabstop=4                   " a tab is four spaces
-set softtabstop=4               " when hitting <BS>, pretend like a tab is removed, even if spaces
+set tabstop=2                   " a tab is two spaces
+set softtabstop=2               " when hitting <BS>, pretend like a tab is removed, even if spaces
 set expandtab                   " expand tabs by default (overloadable per file type later)
-set shiftwidth=4                " number of spaces to use for autoindenting
+set shiftwidth=2                " number of spaces to use for autoindenting
 set copyindent                  " copy previous line's indent
 set smarttab                    " insert tabs on the start of a line according to shiftwidth, not tabstop
 
@@ -84,6 +83,11 @@ set incsearch                   " show search matches as you type
 set hlsearch                    " highlight search results
 nnoremap <leader><space> :noh<cr>
 
+" CtrlP
+let g:ctrlp_custom_ignore = {
+    \ 'dir': '\v(\.git)|node_modules|bower_components|tmp|*?migrations?|CACHE|vendor|grappelli',
+    \ 'file': '\.pyc$'
+    \ }
 " Matchit
 nmap <Tab> %
 vmap <Tab> %
@@ -93,12 +97,6 @@ autocmd FocusLost * :set number
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
 autocmd CursorMoved * :set relativenumber
-
-" line overrun
-
-set colorcolumn=80
-set colorcolumn=+1,+2,+3
-highlight ColorColumn ctermfg=88
 
 " hidden characters
 set listchars=tab:▸\ ,eol:¬
@@ -118,15 +116,6 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-
-" C-a is used by tmux
-":verbose map <C-a>
-":nunmap <C-a>
-":nnoremap <A-a> <C-a>
-":nnoremap <A-x> <C-x>
-
-" scratch buffer
-" nnoremap <leader><tab> :Scratch<CR>
 
 " DelimitMate Options
 let g:delimitMate_expand_cr = 2
@@ -151,43 +140,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 let g:tagbar_usearrows = 1
 nnoremap <leader>f :TagbarToggle<CR>
 
-" Color Picker settings
-" let g:colorpicker_app = 'iTerm.app'
-" inoremap <leader>c <ESC>:ColorHEX<CR>a
-" nnoremap <leader>c :ColorHEX<CR>a
-
-" Command T Settings
-let g:CommandTMatchWindowReverse = 1
-let g:CommandTCancelMap='<C-x>'
-let g:CommandTFileScanner='find'
-noremap <C-t> <Esc>:CommandT<CR>
-noremap <leader>O <Esc>:CommandTFlush<CR>
-noremap <C-t>b <Esc>:CommandTBuffer<CR>
-
-" YouCompleteMe settings
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_seed_identifiers_with_syntax = 1
-
-" Colorizer Settings
-" let g:colorizer_fgcontrast = -1
-" let g:auto_color=1
-" let g:colorizer_auto_filetype='scss,css,html,erb'
-
-" syntastic settings
-let g:syntastic_check_on_open=1
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
-let g:syntastic_mode_map = { 'mode' : 'active',
-            \'active_filetypes': [],
-            \'passive_filetypes' : ['html'] }
-
-let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_scss_checkers = ['sass']
-let g:syntastic_php_checkers = ['php']
-let g:syntastic_auto_loc_list=1
-let g:syntastic_stl_format='[%E{Errors: %e | Line #%fe}%B{, }%W{Warnings: %w | Line #%fw}]'
-
-set statusline=%#warningmsg#%{SyntasticStatuslineFlag()}%*  " syntastic status
 set statusline+=bu:\ %-3.3n\                                " buffer number
 set statusline+=\ %F\ :\                                    " full path
 set statusline+=%y                                          " filetype
@@ -214,22 +166,6 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
 endif
-
-nnoremap <leader>q :call QuickFixToggle()<cr>
-
-let g:quickfix_is_open = 0
-
-function! QuickFixToggle()
-    if g:quickfix_is_open
-        lclose
-        let g:quickfix_is_open = 0
-        execute g:quickfix_return_to_window . "wincmd w"
-    else
-        let g:quickfix_return_to_window = winnr()
-        lopen
-        let g:quickfix_is_open = 1
-    endif
-endfunction
 
 " Quick yanking to end of line
 nnoremap Y y$
@@ -262,10 +198,21 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " }}}
 
 au BufRead,BufNewFile *.handlebars,*.hbs set ft=html syntax=handlebars
+"let g:neomake_open_list = 2
+" nnoremap <leader>o :lopen<cr>
+" nnoremap <leader>c :lclose<cr>
+
+
+
 
 " Filetype specific handling {{{
 " only do this part when compiled with support for autocommands
 if has("autocmd")
+
+    if exists(':Neomake')
+        autocmd! BufWritePost,BufEnter * Neomake
+    endif
+
     augroup invisible_chars "{{{
         au!
 
@@ -352,10 +299,10 @@ if has("autocmd")
         "autocmd filetype python setlocal foldmethod=expr
 
         " Python runners
-        autocmd filetype python noremap <buffer> <F5> :w<CR>:!python %<CR>
-        autocmd filetype python inoremap <buffer> <F5> <Esc>:w<CR>:!python %<CR>
-        autocmd filetype python noremap <buffer> <S-F5> :w<CR>:!ipython %<CR>
-        autocmd filetype python inoremap <buffer> <S-F5> <Esc>:w<CR>:!ipython %<CR>
+"        autocmd filetype python noremap <buffer> <F5> :w<CR>:!python %<CR>
+"        autocmd filetype python inoremap <buffer> <F5> <Esc>:w<CR>:!python %<CR>
+"        autocmd filetype python noremap <buffer> <S-F5> :w<CR>:!ipython %<CR>
+"        autocmd filetype python inoremap <buffer> <S-F5> <Esc>:w<CR>:!ipython %<CR>
 
         " Automatic insertion of breakpoints
         autocmd filetype python nnoremap <buffer> <leader>bp :normal Oimport pdb; pdb.set_trace()<Esc>
