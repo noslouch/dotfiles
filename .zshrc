@@ -7,6 +7,19 @@ alias lsip='curl -s http://checkip.dyndns.org | sed "s/[a-zA-Z/<> :]//g"'
 alias vi='vim'
 alias gg='git status -s'
 
+alias demo='ssh wnyc@demo-www2.wnyc.net'
+alias misc='ssh wnyc@prod-www-misc1.wnyc.net'
+alias app1='ssh wnyc@prod-www-app1.wnyc.net'
+alias app2='ssh wnyc@prod-www-app2.wnyc.net'
+alias app3='ssh wnyc@prod-www-app3.wnyc.net'
+alias app4='ssh wnyc@prod-www-app4.wnyc.net'
+alias app5='ssh wnyc@prod-www-app5.wnyc.net'
+alias app6='ssh wnyc@prod-www-app6.wnyc.net'
+alias app7='ssh wnyc@prod-www-app7.wnyc.net'
+alias media='ssh wnyc@prod-media.wnyc.net'
+alias internal='ssh wnyc@prod-www-internal-app1.wnyc.net'
+
+
 autoload -U zmv
 alias mmv='noglob zmv -W'
 
