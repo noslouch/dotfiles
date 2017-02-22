@@ -20,8 +20,7 @@ alias media='ssh wnyc@prod-media.wnyc.net'
 alias internal='ssh wnyc@prod-www-internal-app1.wnyc.net'
 alias tunnel='ssh -f bwhitton@dev.wnyc.net -L 5432:localhost:5432 -N'
 
-
-run() { 
+publisher() { 
   local SETTINGS
   local PORT
   while [[ $# > 1 ]]
@@ -47,6 +46,33 @@ run() {
     PORT=4567
   fi
   ./manage.py runserver 0.0.0.0:${PORT} --settings=puppy.settings.${SETTINGS}_settings
+}
+
+web() {
+  local PORT
+  local PROXY
+  while [[ $# > 1 ]]
+  do
+    key="$1"
+    case $key in
+      -p|--port)
+      PORT="$2"
+      shift
+      ;;
+      -x|--proxy)
+      PROXY="$2"
+      shift
+      ;;
+    esac
+    shift
+  done
+  if [[ -z $PORT ]]; then
+    PORT=4200
+  fi
+  if [[ -z $PROXY ]]; then
+    PROXY=http://localhost:4567
+  fi
+  ember serve --proxy ${PROXY} --port ${PORT}
 }
 
 autoload -U zmv
