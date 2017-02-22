@@ -18,6 +18,7 @@ alias app6='ssh wnyc@prod-www-app6.wnyc.net'
 alias app7='ssh wnyc@prod-www-app7.wnyc.net'
 alias media='ssh wnyc@prod-media.wnyc.net'
 alias internal='ssh wnyc@prod-www-internal-app1.wnyc.net'
+alias tunnel='ssh -f bwhitton@dev.wnyc.net -L 5432:localhost:5432 -N'
 
 
 run() { 
