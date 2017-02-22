@@ -126,7 +126,7 @@ ZSH_THEME="bureau"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(dircycle dirhistory lol git gitfast colorize iwhois npm bower vi-mode zsh-syntax-highlighting history-substring-search)
+plugins=(git gitfast colorize iwhois npm bower vi-mode zsh-syntax-highlighting history-substring-search zsh-nvm)
 fpath=(~/.zsh $fpath)
 
 source $ZSH/oh-my-zsh.sh
@@ -143,8 +143,7 @@ bindkey "$terminfo[cud1]" history-substring-search-down
 
 # User configuration
 
-export PATH="$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
-# export MANPATH="/usr/local/man:$MANPATH"
+export PATH="$PATH:$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
 
 # git completion
 # __git_files () { 
