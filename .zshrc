@@ -115,7 +115,7 @@ ZSH_THEME="bureau"
 # DISABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
- COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -180,6 +180,11 @@ bindkey "^?" backward-delete-char
 # use `jj` to switch into command mode
 bindkey -M viins 'jj' vi-cmd-mode
 
+# visual editing on the cli
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
 # User configuration
 
 export PATH="$PATH:$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
@@ -199,3 +204,7 @@ export ERL_CRASH_DUMP=/tmp/erl.dump
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # this loads nvm
+
+ssh-add
+
+export ERL_CRASH_DUMP=/tmp

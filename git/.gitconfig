@@ -1,6 +1,7 @@
 [user]
     email=me@brianwhitton.com
     name="Brian Whitton"
+	signingkey = 134A03C911495E0C
 
 [push]
     default=matching
