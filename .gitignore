@@ -1,3 +1,4 @@
 *.un~
 *.swp
 .netrwhist
+.vim/tmp
