@@ -48,7 +48,6 @@ set backspace=indent,eol,start  " allow backspacing over everything in insert mo
 set laststatus=2
 set cmdheight=2
 set relativenumber              " show line numbers relative to cursor position
-set undofile
 " Disable temp and backup files for ember
 set wildignore+=.*.swp,*~,._*
 set nowrap                        " wrap lines
@@ -61,6 +60,27 @@ set fileformats="unix,dos,mac"
 set formatoptions+=1            " when wrapping paragraphs, don't end lines with 1-letter words (looks stupid)
 set nrformats=                  " make <C-a> and <C-x> play well with zero-padded numbers (i.e. don't consider them octal or hex)
 set nolist                      " don't show invisible characters by default, but turned on later for certain file types
+
+" undo settings
+set backupdir=~/.vim/tmp/backup
+set directory=~/.vim/tmp/swap
+set undodir=~/.vim/tmp/undo
+
+if !isdirectory(expand(&backupdir))
+    call mkdir(expand(&backupdir), "p")
+endif
+
+if !isdirectory(expand(&directory))
+    call mkdir(expand(&directory), "p")
+endif
+
+if !isdirectory(expand(&undodir))
+    call mkdir(expand(&undodir), "p")
+endif
+
+set undofile                    " Undo history maintained across sessions
+set undolevels=1000             " Save last 1000 changes
+set undoreload=10000            " Load last 10,000 changes
 
 " Toggle show/hide invisible chars
 nnoremap <leader>i :set list!<cr>
