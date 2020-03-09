@@ -269,7 +269,7 @@ if has("autocmd")
                 let n = n + 1
             endwhile
             " go with html
-            set ft=ee
+            set ft=html
         endfun
 
         autocmd BufNewFile,BufRead *.html,*.htm,*.j2 call s:DetectHTMLVariant()
