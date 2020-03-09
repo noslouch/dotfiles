@@ -203,9 +203,6 @@ nnoremap <leader>al :left<CR>
 nnoremap <leader>ar :right<CR>
 nnoremap <leader>ac :center<CR>
 
-" Helpful use of space bar
-nnoremap <space> :
-
 " Quicksave
 nnoremap <space><space> :w<cr>
 
