@@ -7,81 +7,6 @@ alias lsip='curl -s http://checkip.dyndns.org | sed "s/[a-zA-Z/<> :]//g"'
 alias vi='vim'
 alias gg='git status -s'
 
-alias demo='ssh publisher@publisher-demo-app-0.nypr.digital'
-alias app0='ssh publisher@publisher-prod-app-0.nypr.digital'
-alias app1='ssh publisher@publisher-prod-app-1.nypr.digital'
-alias app2='ssh publisher@publisher-prod-app-2.nypr.digital'
-alias app3='ssh publisher@publisher-prod-app-3.nypr.digital'
-alias app4='ssh publisher@publisher-prod-app-4.nypr.digital'
-alias app5='ssh publisher@publisher-prod-app-5.nypr.digital'
-alias tunnel='ssh -f bwhitton@dev.wnyc.net -L 5432:publisher-dev-rds.nypr.digital:5432 -N'
-
-publisher() { 
-  local SETTINGS
-  local PORT
-  while [[ $# > 1 ]]
-  do
-  key="$1"
-
-  case $key in
-      -s|--settings)
-      SETTINGS="$2"
-      shift # past argument
-      ;;
-      -p|--port)
-      PORT="$2"
-      shift # past argument
-      ;;
-  esac
-  shift # past argument or value
-  done
-  if [[ -z $SETTINGS ]]; then
-    SETTINGS=wnyc
-  fi
-  if [[ -z $PORT ]]; then
-    PORT=4567
-  fi
-  ./manage.py runserver 0.0.0.0:${PORT} --settings=puppy.settings.${SETTINGS}_settings
-}
-
-web() {
-  local PORT
-  local PROXY
-  local CLIENT
-
-  for client in wnyc wqxr newsounds wnycstudios; do
-    if [ -n "$1" ] && [ $1 == $client ]; then
-      CLIENT=$1
-      break
-    fi
-  done
-
-  while [[ $# > 1 ]]
-  do
-    key=$1
-    case $key in
-      -p|--port)
-      PORT=$2
-      shift
-      ;;
-      -x|--proxy)
-      PROXY=$2
-      shift
-      ;;
-    esac
-    shift
-  done
-  if [ -z "$PORT" ]; then
-    PORT=4200
-  fi
-  if [ -n "$CLIENT" ]; then
-    PROXY=https://$CLIENT.demo2.wnyc.net
-  elif [ -z "$PROXY" ]; then
-    PROXY=http://localhost:4567
-  fi
-  ember serve --proxy ${PROXY} --port ${PORT} --live-reload-port 45914
-}
-
 autoload -U zmv
 alias mmv='noglob zmv -W'
 
@@ -195,8 +120,6 @@ fi
 export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 ssh-add
 
