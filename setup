@@ -3,7 +3,6 @@
 cd ~
 ln -s .dotfiles/.vim .
 ln -s .dotfiles/.vim/.vimrc .
-mv .zshrc .zshrc_old
 ln -s .dotfiles/.zshrc .
 ln -s .dotfiles/git/.gitconfig .
 ln -s .dotfiles/tmux/.tmux.conf .
