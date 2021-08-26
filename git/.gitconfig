@@ -4,7 +4,7 @@
     signingkey=134A03C911495E0C
 
 [push]
-    default=matching
+    default = current
 
 [core]
     editor = vim
@@ -65,4 +65,14 @@
 	  hide-status = 1
     hide-dirty = 1
 [merge]
-	conflictstyle = diff3
+    conflictstyle = diff3
+[url "https://"]
+    insteadOf = git://
+[init]
+    defaultBranch = main
+[pull]
+    ff = only
+[commit]
+    gpgsign = true
+[gpg]
+    program = /usr/local/bin/gpg
