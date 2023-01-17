@@ -1,5 +1,5 @@
 [user]
-    email=me@brianwhitton.com
+    email=bwhitton@gmail.com
     name="Brian Whitton"
     signingkey=134A03C911495E0C
 
@@ -26,19 +26,19 @@
 [color "diff"]
     meta = magenta bold
     frag = magenta bold
-    plain = green bold
+    plain = 246
     old = red bold
-    new = yellow bold
+    new = 154 bold
 
 [color "status"]
-    header = magenta
+    header = 255
     added = green bold
     updated = green bold
     changed = yellow bold
     untracked = red bold
 
 [color "decorate"]
-    remoteBranch = blue
+    remoteBranch = 45
     branch = yellow
 
 [alias]
