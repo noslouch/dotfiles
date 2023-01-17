@@ -2,6 +2,8 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+DISABLE_MAGIC_FUNCTIONS=true
+
 ZSH_THEME=""
 plugins=(
   git
@@ -17,8 +19,13 @@ source $ZSH/oh-my-zsh.sh
 _evalcache pyenv init -
 _evalcache thefuck --alias
 
-# prompt
+# pure prompt config
+zstyle :prompt:pure:git:stash show yes
+zstyle :prompt:pure:path color 039
+zstyle :prompt:pure:prompt:success color 034
+zstyle :prompt:pure:git:dirty color 226
 autoload -U promptinit; promptinit
+RPROMPT='20%D %*'
 prompt pure
 
 export EDITOR="vim"
@@ -26,10 +33,12 @@ DEFAULT_USER=$(whoami)
 
 alias lsip='curl -s http://checkip.dyndns.org | sed "s/[a-zA-Z/<> :]//g"'
 alias vi='vim'
-alias gg='git status -s'
 
 autoload -U zmv
 alias mmv='noglob zmv -W'
+
+# clean diff
+alias gdk="git diff -- ':(exclude)*package-lock*'"
 
 
 # check completions once a day to speed up shell starts
@@ -77,7 +86,7 @@ function venv_info {
 
 # User configuration
 
-export PATH="$PATH:$HOME/bin:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
+export PATH="/usr/local/Cellar/sqlite/3.38.1/bin:$PATH:$HOME/bin:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
 
 if [[ -S "$SSH_AUTH_SOCK" && ! -h "$SSH_AUTH_SOCK" ]]; then
     ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock;
@@ -95,3 +104,9 @@ timezsh() {
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 #zprof
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+autoload -U +X bashcompinit && bashcompinit
