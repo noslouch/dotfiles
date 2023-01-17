@@ -94,8 +94,8 @@ set copyindent                  " copy previous line's indent
 set smarttab                    " insert tabs on the start of a line according to shiftwidth, not tabstop
 
 " searching and such
-nnoremap / /\v
-vnoremap / /\v
+" nnoremap / /\v
+" vnoremap / /\v
 set ignorecase                  " ignore case when searching
 set smartcase                   " ignore case if search pattern is all lowercase, case-sensitive otherwise
 set gdefault                    " search/replace globally on a line by default
