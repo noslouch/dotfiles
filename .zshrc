@@ -1,3 +1,5 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/Users/whittonb/.zsh/completions:"* ]]; then export FPATH="/Users/whittonb/.zsh/completions:$FPATH"; fi
 #zmodload zsh/zprof
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -13,6 +15,7 @@ plugins=(
   history-substring-search
 )
 fpath=(~/.zsh $fpath)
+fpath+=("$(brew --prefix)/share/zsh/site-functions")
 
 source $ZSH/oh-my-zsh.sh
 
@@ -86,7 +89,10 @@ function venv_info {
 
 # User configuration
 
-export PATH="/usr/local/Cellar/sqlite/3.38.1/bin:$PATH:$HOME/bin:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
+export ANDROID_HOME=/Users/whittonb/Library/Android/sdk
+export JAVA_HOME=$(/usr/libexec/java_home)
+
+export PATH="/opt/homebrew/opt/curl/bin:/opt/homebrew/opt/sqlite/bin:/opt/homebrew/opt/postgresql@17/bin:$HOME/bin:$HOME/.local/bin:/usr/games:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
 
 if [[ -S "$SSH_AUTH_SOCK" && ! -h "$SSH_AUTH_SOCK" ]]; then
     ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock;
@@ -101,7 +107,7 @@ timezsh() {
   for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
 }
 
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 #zprof
 
@@ -110,3 +116,38 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 autoload -U +X bashcompinit && bashcompinit
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]; then . '/usr/local/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/usr/local/google-cloud-sdk/completion.zsh.inc' ]; then . '/usr/local/google-cloud-sdk/completion.zsh.inc'; fi
+
+# bun completions
+[ -s "/Users/whittonb/.bun/_bun" ] && source "/Users/whittonb/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+. "/Users/whittonb/.deno/env"
+. "$HOME/.cargo/env"
+
+# Allow running curl against local domains using consumer certs
+alias curlLocal='curl --cacert "/Users/whittonb/.consumer-certs/rootCA.pem"'
+
+eval "$(saml2aws --completion-script-zsh)"
+
+complete -C aws_completer aws
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/whittonb/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
+
+# zscaler certs
+source /opt/newscorp/zscaler/zscaler.inc
+
+alias claude="/Users/whittonb/.claude/local/claude"

@@ -1,7 +1,7 @@
 [user]
-    email=bwhitton@gmail.com
     name="Brian Whitton"
-    signingkey=134A03C911495E0C
+    email = brian.whitton@wsj.com
+    signingkey = 01068F9F278B0314
 
 [push]
     default = current
