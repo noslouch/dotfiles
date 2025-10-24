@@ -133,12 +133,6 @@ export NVM_DIR="$HOME/.nvm"
 
 autoload -U +X bashcompinit && bashcompinit
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/usr/local/google-cloud-sdk/path.zsh.inc' ]; then . '/usr/local/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/usr/local/google-cloud-sdk/completion.zsh.inc' ]; then . '/usr/local/google-cloud-sdk/completion.zsh.inc'; fi
-
 # bun completions
 [ -s "/Users/whittonb/.bun/_bun" ] && source "/Users/whittonb/.bun/_bun"
 
@@ -167,3 +161,9 @@ compinit
 # source /opt/newscorp/zscaler/zscaler.inc
 
 alias claude="/Users/whittonb/.claude/local/claude"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/brianwhitton/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/brianwhitton/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/brianwhitton/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/brianwhitton/google-cloud-sdk/completion.zsh.inc'; fi
