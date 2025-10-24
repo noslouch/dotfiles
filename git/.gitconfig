@@ -1,7 +1,7 @@
 [user]
     name="Brian Whitton"
     email = brian.whitton@wsj.com
-    signingkey = 01068F9F278B0314
+    signingkey = /Users/brianwhitton/.ssh/id_ed25519.pub
 
 [push]
     default = current
@@ -75,4 +75,4 @@
 [commit]
     gpgsign = true
 [gpg]
-    program = /usr/local/bin/gpg
+    format = ssh
