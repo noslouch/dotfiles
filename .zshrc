@@ -84,10 +84,14 @@ function venv_info {
 
 # User configuration
 
-export ANDROID_HOME=/Users/whittonb/Library/Android/sdk
-export JAVA_HOME=$(/usr/libexec/java_home)
+## android testing stuff
+#export ANDROID_HOME=/Users/whittonb/Library/Android/sdk
+#export JAVA_HOME=$(/usr/libexec/java_home)
+# export PATH="$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
 
-export PATH="/opt/homebrew/opt/curl/bin:/opt/homebrew/opt/sqlite/bin:/opt/homebrew/opt/postgresql@17/bin:$HOME/bin:$HOME/.local/bin:/usr/games:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
+# put postgres 18 in path
+export PATH="/opt/homebrew/opt/postgresql@18/bin:$PATH"
+
 
 if [[ -S "$SSH_AUTH_SOCK" && ! -h "$SSH_AUTH_SOCK" ]]; then
     ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock;
@@ -95,7 +99,8 @@ fi
 export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 ssh-add -q
 
-export ERL_CRASH_DUMP=/tmp/erl.dump
+# erlang crash dump location
+# export ERL_CRASH_DUMP=/tmp/erl.dump
 
 timezsh() {
   shell=${1-$SHELL}
@@ -104,7 +109,8 @@ timezsh() {
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-#zprof
+# profile zsh startup time
+# zprof
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -127,8 +133,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-. "/Users/whittonb/.deno/env"
-. "$HOME/.cargo/env"
+# . "/Users/whittonb/.deno/env"
+# . "$HOME/.cargo/env"
 
 # Allow running curl against local domains using consumer certs
 alias curlLocal='curl --cacert "/Users/whittonb/.consumer-certs/rootCA.pem"'
@@ -143,6 +149,6 @@ compinit
 # End of Docker CLI completions
 
 # zscaler certs
-source /opt/newscorp/zscaler/zscaler.inc
+# source /opt/newscorp/zscaler/zscaler.inc
 
 alias claude="/Users/whittonb/.claude/local/claude"
