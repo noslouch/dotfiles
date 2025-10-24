@@ -1,3 +1,6 @@
+# uvx tools
+. "$HOME/.local/bin/env"
+
 # Add deno completions to search path
 if [[ ":$FPATH:" != *":/Users/whittonb/.zsh/completions:"* ]]; then export FPATH="/Users/whittonb/.zsh/completions:$FPATH"; fi
 #zmodload zsh/zprof
