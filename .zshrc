@@ -10,7 +10,6 @@ ZSH_THEME=""
 plugins=(
   git
   gitfast
-  evalcache
   colorize
   history-substring-search
 )
@@ -18,9 +17,6 @@ fpath=(~/.zsh $fpath)
 fpath+=("$(brew --prefix)/share/zsh/site-functions")
 
 source $ZSH/oh-my-zsh.sh
-
-_evalcache pyenv init -
-_evalcache thefuck --alias
 
 # pure prompt config
 zstyle :prompt:pure:git:stash show yes
@@ -42,7 +38,6 @@ alias mmv='noglob zmv -W'
 
 # clean diff
 alias gdk="git diff -- ':(exclude)*package-lock*'"
-
 
 # check completions once a day to speed up shell starts
 autoload -Uz compinit
