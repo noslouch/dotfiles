@@ -76,3 +76,12 @@
     gpgsign = true
 [gpg]
     format = ssh
+
+[includeIf "gitdir:~/src/"]
+	path = ~/.gitconfig-personal
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential

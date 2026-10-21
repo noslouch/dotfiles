@@ -47,6 +47,8 @@ DEFAULT_USER=$(whoami)
 
 alias lsip='curl -s http://checkip.dyndns.org | sed "s/[a-zA-Z/<> :]//g"'
 alias vi='vim'
+alias cc='claude --settings ~/.claude/settings.nc.json'
+alias ccp='claude --settings ~/.claude/settings.bw.json'
 
 autoload -U zmv
 alias mmv='noglob zmv -W'
@@ -150,7 +152,7 @@ alias curlLocal='curl --cacert "/Users/whittonb/.consumer-certs/rootCA.pem"'
 
 eval "$(saml2aws --completion-script-zsh)"
 
-complete -C aws_completer aws
+# complete -C aws_completer aws
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(/Users/whittonb/.docker/completions $fpath)
 autoload -Uz compinit
@@ -160,10 +162,27 @@ compinit
 # zscaler certs
 # source /opt/newscorp/zscaler/zscaler.inc
 
-alias claude="/Users/whittonb/.claude/local/claude"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/brianwhitton/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/brianwhitton/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/brianwhitton/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/brianwhitton/google-cloud-sdk/completion.zsh.inc'; fi
+
+export SKILL_LIBRARIES_PATH="$HOME/.claude/skills:$SKILL_LIBRARIES_PATH"
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/brianwhitton/.local/bin:$PATH"
+
+# >>> tank2 daemon installer PATH >>>
+# Added by the Tank daemon package so the `tank2` CLI in ~/.local/bin is on PATH.
+case ":$PATH:" in
+  *":$HOME/.local/bin:"*) ;;
+  *) export PATH="$HOME/.local/bin:$PATH" ;;
+esac
+# <<< tank2 daemon installer PATH <<<
+
+# >>> railway initialize >>>
+source "$HOME/.railway/env"
+# <<< railway initialize <<<
